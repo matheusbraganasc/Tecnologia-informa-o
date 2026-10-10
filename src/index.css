@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #0A0A0C;
+    --bg-card: #2A2A2E;
+    --accent-dark: #8F1D2C;
+    --accent-bright: #FF3B3F;
+    --text-primary: #CFCFD4;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
