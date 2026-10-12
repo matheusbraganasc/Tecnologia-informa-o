@@ -6,6 +6,7 @@ import { ProjectsGrid } from './components/portfolio/ProjectsGrid'
 import { SkillsSection } from './components/portfolio/SkillsSection'
 import { Terminal } from './components/dashboard/Terminal'
 import { SystemHealth } from './components/dashboard/SystemHealth'
+import { SpotifyWidget } from './components/dashboard/SpotifyWidget'
 import { ViewProvider, useView } from './context/ViewContext'
 
 function MainContent() {
@@ -33,6 +34,7 @@ function MainContent() {
 
           <Terminal />
           <SystemHealth />
+          <SpotifyWidget />
         </div>
       )}
     </main>
