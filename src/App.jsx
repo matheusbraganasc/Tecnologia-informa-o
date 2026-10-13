@@ -13,7 +13,7 @@ function MainContent() {
   const { activeView } = useView()
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-4">
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-8">
       {activeView === 'portfolio' ? (
         <div className="space-y-8">
           <HeroSection />
@@ -23,12 +23,12 @@ function MainContent() {
         </div>
       ) : (
         <div className="space-y-6 text-left">
-          <div className="py-4">
+          <div className="py-2 sm:py-4">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
               Dev <span className="text-[#FF3B3F]">Dashboard</span> & Interactive CLI
             </h2>
-            <p className="text-sm text-[#CFCFD4]/70 mt-1 font-mono">
-              // Painel de controlo interativo em tempo real
+            <p className="text-xs sm:text-sm text-[#CFCFD4]/70 mt-1 font-mono">
+              // Painel de controle interativo em tempo real
             </p>
           </div>
 

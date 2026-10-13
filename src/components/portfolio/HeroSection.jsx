@@ -1,65 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export function HeroSection() {
+  const [copied, setCopied] = useState(false)
+  const email = "matheusbraganasc@gmail.com"
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
   return (
-    <section className="py-12 relative overflow-hidden text-left">
-      {/* Efeito Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#8F1D2C]/20 rounded-full blur-3xl -z-10 pointer-events-none" />
+    <section className="py-8 sm:py-12 text-left">
+      {/* Badge Status */}
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2A2A2E]/60 border border-[#8F1D2C]/40 mb-6">
+        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+        <span className="text-xs font-mono text-[#CFCFD4]">Disponível para Projetos e Oportunidades</span>
+      </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="flex-1 space-y-4">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2A2A2E] border border-[#8F1D2C]/50 text-xs font-medium text-[#CFCFD4]">
-            <span className="w-2 h-2 rounded-full bg-[#FF3B3F] animate-pulse" />
-            <span>Disponível para novos projetos</span>
-          </div>
+      {/* Título Principal */}
+      <h1 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
+        Olá, sou o <span className="text-[#FF3B3F]">Matheus Braga</span>
+      </h1>
 
-          {/* Nome e Cargo */}
-          <div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Olá, sou <br />
-              <span className="text-[#FF3B3F]">Matheus Nascimento Braga</span>
-            </h1>
-            <p className="text-lg font-mono text-[#CFCFD4]/80 mt-2">
-              Desenvolvedor de Software <span className="text-[#8F1D2C]">|</span> Apex • Python • React
-            </p>
-          </div>
+      <p className="text-base sm:text-xl font-mono text-[#CFCFD4]/90 max-w-2xl leading-relaxed mb-6">
+        Desenvolvedor Salesforce (Apex/SOQL), Python & Full Stack. Estudante de Análise e Desenvolvimento de Sistemas.
+      </p>
 
-          {/* Bio */}
-          <p className="text-[#CFCFD4]/80 text-sm sm:text-base leading-relaxed">
-            Desenvolvedor com experiência em automação Salesforce (Apex), microsserviços em Python e aplicações Web modernas.
-          </p>
+      {/* Botões Principais de Ação */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-md sm:max-w-none">
+        <a
+          href="/Curriculo_Matheus_Braga.pdf"
+          download="Curriculo_Matheus_Braga.pdf"
+          className="px-6 py-3 rounded-xl bg-[#FF3B3F] hover:bg-[#8F1D2C] text-white font-mono text-xs sm:text-sm font-bold transition-all shadow-lg shadow-[#FF3B3F]/20 text-center flex items-center justify-center gap-2"
+        >
+          📄 Baixar CV
+        </a>
 
-          {/* Botões */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href="/resume.pdf"
-              download
-              className="px-5 py-2.5 rounded-xl bg-[#FF3B3F] text-white font-bold text-sm shadow-lg shadow-[#FF3B3F]/20"
-            >
-              Baixar CV
-            </a>
-            <a
-              href="mailto:contato@exemplo.com"
-              className="px-5 py-2.5 rounded-xl bg-[#2A2A2E] text-[#CFCFD4] border border-[#8F1D2C]/40 text-sm font-medium"
-            >
-              Contato
-            </a>
-          </div>
-        </div>
+        <a
+          href={`mailto:${email}`}
+          className="px-6 py-3 rounded-xl bg-[#0A0A0C] hover:bg-[#2A2A2E] text-[#CFCFD4] hover:text-white font-mono text-xs sm:text-sm font-bold transition-all border border-[#8F1D2C]/40 hover:border-[#FF3B3F] text-center flex items-center justify-center gap-2"
+        >
+          ✉ Enviar E-mail
+        </a>
 
-        {/* Card Avatar */}
-        <div className="w-full sm:w-auto flex justify-center mt-6 md:mt-0">
-          <div className="w-64 h-64 bg-[#2A2A2E] rounded-3xl p-6 border border-[#8F1D2C]/50 flex flex-col items-center justify-center space-y-3 text-center shadow-xl">
-            <div className="w-20 h-20 rounded-full bg-[#0A0A0C] border-2 border-[#FF3B3F] flex items-center justify-center text-2xl font-mono font-bold text-[#FF3B3F]">
-              MB
-            </div>
-            <div>
-              <p className="font-mono text-sm font-bold text-white">matheus_braga.dev</p>
-              <p className="text-xs text-[#CFCFD4]/60 font-mono mt-1">Caucaia / Fortaleza, CE</p>
-            </div>
-          </div>
-        </div>
+        <button
+          onClick={handleCopyEmail}
+          className="px-4 py-3 rounded-xl bg-[#2A2A2E]/60 hover:bg-[#2A2A2E] text-[#CFCFD4] hover:text-white font-mono text-xs font-bold transition-all border border-[#2A2A2E] hover:border-[#FF3B3F]/40 text-center"
+        >
+          {copied ? '✓ Copiado!' : '📋 Copiar E-mail'}
+        </button>
       </div>
     </section>
   )
