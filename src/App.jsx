@@ -1,8 +1,9 @@
 import React from 'react'
 import { Navbar } from './components/layout/Navbar'
 import { HeroSection } from './components/portfolio/HeroSection'
-import { Timeline } from './components/portfolio/Timeline'
+import { AboutMe } from './components/portfolio/AboutMe'
 import { ProjectsGrid } from './components/portfolio/ProjectsGrid'
+import { Timeline } from './components/portfolio/Timeline'
 import { SkillsSection } from './components/portfolio/SkillsSection'
 import { Terminal } from './components/dashboard/Terminal'
 import { SystemHealth } from './components/dashboard/SystemHealth'
@@ -13,12 +14,13 @@ function MainContent() {
   const { activeView } = useView()
 
   return (
-    <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-8">
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-8 overflow-x-hidden">
       {activeView === 'portfolio' ? (
-        <div className="space-y-8">
+        <div className="space-y-10">
           <HeroSection />
-          <Timeline />
+          <AboutMe />
           <ProjectsGrid />
+          <Timeline />
           <SkillsSection />
         </div>
       ) : (

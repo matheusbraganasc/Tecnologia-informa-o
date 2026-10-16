@@ -1,55 +1,110 @@
 import React from 'react'
-import { projectsData } from '../../data/projects'
 
 export function ProjectsGrid() {
+  const projects = [
+    {
+      title: "J.A.R.V.I.S. AI Assistant",
+      subtitle: "Ecossistema de Inteligência Artificial Agêntica",
+      description: "Assistente pessoal inteligente composto por Jarvis-Backend (FastAPI), Jarvis-Assistente (Termux/Python) e interface mobile Jarvis-HUD (Flet).",
+      tags: ["Python", "FastAPI", "Flet", "Agentic AI", "Termux"],
+      // Podes adicionar uma imagem/GIF na pasta public/ e colocar a rota aqui (ex: "/projects/jarvis.gif")
+      image: null,
+      github: "https://github.com/matheusbraganasc",
+      demo: null,
+      featured: true
+    },
+    {
+      title: "Cyber Crimson Portfolio & Dashboard",
+      subtitle: "Sistema Web Interativo Dual-View",
+      description: "Portfólio moderno em React e Tailwind CSS com modo Recrutador e modo Dev Dashboard com monitorização de latência em tempo real e integração com Spotify e GitHub.",
+      tags: ["React", "Vite", "Tailwind CSS", "REST API"],
+      image: null,
+      github: "https://github.com/matheusbraganasc/matheusbraga-portfolio",
+      demo: "#",
+      featured: true
+    },
+    {
+      title: "Salesforce Permission & Apex Modules",
+      subtitle: "Módulos de Automação & Segurança Cloud",
+      description: "Desenvolvimento de rotinas em Apex, consultas otimizadas em SOQL e estruturação de Permission Sets e fluxos de deploy em ambiente empresarial.",
+      tags: ["Salesforce", "Apex", "SOQL", "Cloud Security"],
+      image: null,
+      github: "https://github.com/matheusbraganasc",
+      demo: null,
+      featured: false
+    }
+  ]
+
   return (
-    <section className="py-12 border-t border-[#2A2A2E]">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 text-left">
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Projetos em <span className="text-[#FF3B3F]">Destaque</span>
-          </h2>
-          <p className="text-sm text-[#CFCFD4]/70 mt-1 font-mono">
-            // Soluções reais, automações e aplicações desenvolvidas
-          </p>
-        </div>
+    <section id="projects" className="space-y-6 text-left py-4">
+      {/* Cabeçalho da Secção */}
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-xs font-mono text-[#FF3B3F] font-bold uppercase tracking-widest">
+          // 02. Projetos em Destaque
+        </span>
+        <div className="h-[1px] bg-[#8F1D2C]/40 flex-1" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-        {projectsData.map((project) => (
-          <div
-            key={project.id}
-            className="bg-[#2A2A2E]/60 rounded-2xl p-6 border border-[#8F1D2C]/30 hover:border-[#FF3B3F]/60 transition-all flex flex-col justify-between group shadow-lg"
-          >
-            <div>
-              {/* Categoria / Tag superior */}
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-xs font-mono text-[#FF3B3F] bg-[#0A0A0C] px-3 py-1 rounded-full border border-[#8F1D2C]/40 font-bold">
-                  {project.category}
-                </span>
-                {project.highlight && (
-                  <span className="text-[10px] font-mono text-[#CFCFD4]/60 uppercase tracking-widest">
-                    • Destaque
-                  </span>
-                )}
-              </div>
+      <p className="text-xs sm:text-sm font-mono text-[#CFCFD4]/70">
+        Alguns dos principais sistemas e soluções que desenvolvi recentemente:
+      </p>
 
-              {/* Título e Descrição */}
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FF3B3F] transition-colors">
+      {/* Grelha de Projetos */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {projects.map((project, idx) => (
+          <div
+            key={idx}
+            className={`bg-[#2A2A2E]/60 rounded-3xl border border-[#8F1D2C]/40 p-6 shadow-xl flex flex-col justify-between hover:border-[#FF3B3F]/60 transition-all group relative overflow-hidden ${
+              project.featured ? 'md:col-span-2 lg:col-span-1' : ''
+            }`}
+          >
+            {/* Efeito Glow no Hover */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#FF3B3F]/10 rounded-full blur-3xl group-hover:bg-[#FF3B3F]/20 transition-all pointer-events-none" />
+
+            <div>
+              {/* Capa/Imagem do Projeto (se configurada) */}
+              {project.image ? (
+                <div className="w-full h-44 mb-4 rounded-2xl overflow-hidden border border-[#2A2A2E] bg-[#0A0A0C]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              ) : (
+                /* Placeholder Estilizado estilo Terminal quando não houver imagem */
+                <div className="w-full h-28 mb-4 rounded-2xl border border-[#2A2A2E] bg-[#0A0A0C] p-4 flex flex-col justify-between font-mono text-xs">
+                  <div className="flex items-center justify-between text-[#CFCFD4]/40">
+                    <span>// SYSTEM_PREVIEW</span>
+                    <span className="w-2 h-2 rounded-full bg-[#FF3B3F] animate-pulse" />
+                  </div>
+                  <div className="text-[#FF3B3F] font-bold tracking-wider">
+                    &gt; {project.title.toUpperCase()}
+                  </div>
+                </div>
+              )}
+
+              {/* Título e Subtítulo */}
+              <h4 className="text-lg font-bold text-white group-hover:text-[#FF3B3F] transition-colors">
                 {project.title}
-              </h3>
-              <p className="text-sm text-[#CFCFD4]/80 leading-relaxed mb-6">
+              </h4>
+              <p className="text-xs font-mono text-[#FF3B3F]/80 mb-3">
+                {project.subtitle}
+              </p>
+
+              {/* Descrição */}
+              <p className="text-xs sm:text-sm font-mono text-[#CFCFD4]/80 leading-relaxed mb-4">
                 {project.description}
               </p>
             </div>
 
             <div>
-              {/* Tags das tecnologias */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag, idx) => (
+              {/* Badges das Tecnologias */}
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {project.tags.map((tag, tIdx) => (
                   <span
-                    key={idx}
-                    className="text-xs font-mono text-[#CFCFD4]/70 bg-[#0A0A0C]/80 px-2.5 py-1 rounded-lg border border-[#2A2A2E]"
+                    key={tIdx}
+                    className="text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#0A0A0C] border border-[#2A2A2E] text-[#CFCFD4]/70"
                   >
                     #{tag}
                   </span>
@@ -57,23 +112,23 @@ export function ProjectsGrid() {
               </div>
 
               {/* Botões de Ação */}
-              <div className="flex items-center gap-3 pt-4 border-t border-[#2A2A2E]">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 text-center py-2 rounded-xl bg-[#0A0A0C] hover:bg-[#FF3B3F] text-[#CFCFD4] hover:text-white font-mono text-xs font-bold transition-all border border-[#8F1D2C]/40 hover:border-[#FF3B3F]"
-                >
-                  Repositório
-                </a>
-                {project.demoUrl && (
+              <div className="flex items-center gap-3 pt-3 border-t border-[#2A2A2E]">
+                {project.github && (
                   <a
-                    href={project.demoUrl}
+                    href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 text-center py-2 rounded-xl bg-[#FF3B3F] hover:bg-[#8F1D2C] text-white font-mono text-xs font-bold transition-all shadow-md shadow-[#FF3B3F]/20"
+                    className="flex-1 text-center py-2.5 px-4 rounded-xl bg-[#0A0A0C] hover:bg-[#2A2A2E] text-white font-mono text-xs font-bold border border-[#8F1D2C]/40 hover:border-[#FF3B3F] transition-all"
                   >
-                    Demo
+                    💻 GitHub
+                  </a>
+                )}
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    className="flex-1 text-center py-2.5 px-4 rounded-xl bg-[#FF3B3F] hover:bg-[#8F1D2C] text-white font-mono text-xs font-bold transition-all shadow-md shadow-[#FF3B3F]/20"
+                  >
+                    🚀 Live Demo
                   </a>
                 )}
               </div>
